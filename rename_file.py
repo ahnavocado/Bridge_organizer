@@ -2,7 +2,7 @@ import os, time
 
 from collections import defaultdict
 
-target_dir = "/Users/ahnsukyum/Desktop/untitled folder 8"
+target_dir = "/Users/ahnsukyum/Desktop/untitled folder 5"
 os.chdir(target_dir)
 file_rename = "230204-230205_천안_군대동기"
 
