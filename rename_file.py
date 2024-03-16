@@ -2,9 +2,9 @@ import os, time
 
 from collections import defaultdict
 
-target_dir = "/Users/ahnsukyum/Desktop/untitled folder 5"
+target_dir = "/Users/ahnsukyum/Desktop/230423_옥상에서"
 os.chdir(target_dir)
-file_rename = "230204-230205_천안_군대동기"
+file_rename = "from_the_rooftop"
 
 pic_file_names_sets = []
 i=0
@@ -20,23 +20,29 @@ for filename in file_names:
 print(pic_file_names_sets)
 for t in pic_file_names_sets:
 
-        try:
-            os.rename(f'{target_dir + "/" + t[0]}',
-                       f'{target_dir + "/" + t[1] + ".JPG"}')
+        if os.path.exists(t[0]+".JPG"):
+            print("file name " +t+ " exists")
+        else :
+            try:
+                os.rename(f'{target_dir + "/" + t[0]}',
+                           f'{target_dir + "/" + t[1] + ".JPG"}')
+                print(f"renamed {t[0]} as {t[1]}.JPG ")
+            except (FileNotFoundError) as e:
+                print("----"+str(e))
 
-        except (FileNotFoundError) as e:
-            print(e)
+for t in pic_file_names_sets:
+        if os.path.exists(t[0]+"ARW"):
+            print("file name " + t + " exists")
         else:
-            print(f"renamed {t[0]} as {t[1]}.JPG ")
+            try:
 
-        try:
+                os.rename(f'{target_dir + "/" + t[0][:-4] + ".ARW"}',
+                          f'{target_dir + "/" + t[1] + ".ARW"}')
+                print(f"renamed {t[0][:-4] + '.ARW'} as {t[1]}.ARW ")
+            except (FileNotFoundError) as e:
+                print("----"+str(e))
 
-            os.rename(f'{target_dir + "/" + t[0][:-4] + ".ARW"}',
-                      f'{target_dir + "/" + t[1] + ".ARW"}')
-        except (FileNotFoundError) as e:
-            print(e)
-        else:
-            print(f"renamed {t[0][:-4] +'.ARW'} as {t[1]}.ARW ")
+
 
 
 
